@@ -20,8 +20,9 @@
         <fileset dir="${test-lib.dir}" includes="*.jar"/>
     </path>
 
-    <path id="tlb.path">
+    <path id="load.balanced.classpath">
         <fileset dir="${tlb.path}" includes="*.jar"/>
+        <path refid="test.classpath"/>
     </path>
 
     <target name="init">
@@ -68,7 +69,7 @@
     </target>
 
     <target name="test.count_balanced" depends="init-tlb, compile, compile-tests">
-        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="tlb.path"/>
+        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
             <classpath refid="test.classpath"/>
@@ -80,7 +81,7 @@
     </target>
 
     <target name="test.time_balanced" depends="init-tlb, compile, compile-tests">
-        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="tlb.path"/>
+        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
             <classpath refid="test.classpath"/>
