@@ -1,7 +1,5 @@
 package com.github.tlb.sampleprojects;
 
-import org.hamcrest.Matcher;
-
 /**
  * @understands the concept of a philosopher who needs to sleep in order to come up with her philosophy
  */
