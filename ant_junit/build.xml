@@ -1,0 +1,55 @@
+<project name="ant_junit" basedir="." default="all">
+
+    <property name="src.dir" location="src"/>
+        <property name="test.dir" location="test"/>
+        <property name="test-lib.dir" location="../shared_test_libs"/>
+        <property name="target.dir" location="target"/>
+        <property name="classes.dir" location="${target.dir}/classes"/>
+        <property name="test-classes.dir" location="${target.dir}/test-classes"/>
+        <property name="reports.dir" location="${target.dir}/reports"/>
+
+        <path id="src.classpath">
+            <pathelement path="${classes.dir}"/>
+        </path>
+
+        <path id="test.classpath">
+            <path refid="src.classpath"/>
+            <pathelement path="${test-classes.dir}"/>
+            <fileset dir="${test-lib.dir}" includes="*.jar"/>
+        </path>
+
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${test-classes.dir}"/>
+        <mkdir dir="${reports.dir}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${target.dir}" includeemptydirs="true"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac destdir="${classes.dir}" target="1.5" source="1.5" debug="true" includeantruntime="false">
+            <classpath refid="src.classpath"/>
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+    <target name="compile-tests" depends="compile, init">
+        <javac destdir="${test-classes.dir}" target="1.5" source="1.5" includeantruntime="false">
+            <classpath refid="test.classpath"/>
+            <src path="${test.dir}"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile, compile-tests">
+        <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" fork="true">
+            <classpath refid="test.classpath"/>
+            <batchtest todir="${reports.dir}">
+                <fileset dir="${test-classes.dir}" includes="**/*Test.class*"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="all" depends="clean, init, test"/>
+</project>

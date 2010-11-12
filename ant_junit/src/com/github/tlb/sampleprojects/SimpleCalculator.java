@@ -1,7 +1,5 @@
 package com.github.tlb.sampleprojects;
 
-import org.hamcrest.Matcher;
-
 public class SimpleCalculator {
     public static int sum(int first, int second) {
         return first + second;
