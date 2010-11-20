@@ -37,8 +37,8 @@
         <mkdir dir="${tlb.path}"/>
         <exec command="ant -f ${tlb.submodule.path}/build.xml clean package"/>
         <copy todir="${tlb.path}">
-            <fileset dir="${tlb.submodule.path}/target" includes="tlb-all*.jar" />
-        </copy>
+            <fileset dir="${tlb.submodule.path}/target" includes="tlb-g*.jar" excludes="*src74`q*"/>
+        </copy> lo-0p-=
     </target>
 
     <target name="clean">

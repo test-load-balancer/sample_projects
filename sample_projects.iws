@@ -60,10 +60,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CommutativeTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CommutativeTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ant_junit/test/com/github/tlb/sampleprojects/CommutativeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="896" selection-end="896" vertical-scroll-proportion="0.42951542">
+            <state line="30" column="0" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ant_junit/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="8" selection-start="2253" selection-end="2253" vertical-scroll-proportion="0.2542373">
               <folding />
             </state>
           </provider>
@@ -79,6 +88,13 @@
   <component name="Git.Settings">
     <option name="GIT_EXECUTABLE" value="/usr/bin/git" />
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/ant_junit/build.xml" />
+      </list>
+    </option>
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
@@ -167,6 +183,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RunManager">
@@ -372,10 +389,21 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ant_junit/test/com/github/tlb/sampleprojects/CommutativeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="896" selection-end="896" vertical-scroll-proportion="0.42951542">
+        <state line="30" column="0" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ant_junit/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="8" selection-start="2253" selection-end="2253" vertical-scroll-proportion="0.2542373">
           <folding />
         </state>
       </provider>
