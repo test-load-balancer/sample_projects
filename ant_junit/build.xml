@@ -9,6 +9,8 @@
     <property name="reports.dir" location="${target.dir}/reports"/>
     <property name="tlb.path" location="${target.dir}/tlb"/>
     <property name="tlb.submodule.path" location="${basedir}/../tlb"/>
+    <property name="tlb.dependencies" location="${tlb.submodule.path}/lib"/>
+
 
     <path id="src.classpath">
         <pathelement path="${classes.dir}"/>
@@ -23,6 +25,7 @@
     <path id="load.balanced.classpath">
         <fileset dir="${tlb.path}" includes="*.jar"/>
         <path refid="test.classpath"/>
+        <fileset dir="${tlb.dependencies}" includes="*.jar"/>
     </path>
 
     <target name="init">
@@ -38,7 +41,7 @@
         <exec command="ant -f ${tlb.submodule.path}/build.xml clean package"/>
         <copy todir="${tlb.path}">
             <fileset dir="${tlb.submodule.path}/target" includes="tlb-g*.jar" excludes="*src74`q*"/>
-        </copy> lo-0p-=
+        </copy>
     </target>
 
     <target name="clean">
@@ -72,7 +75,7 @@
         <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
-            <classpath refid="test.classpath"/>
+            <classpath refid="load.balanced.classpath"/>
             <batchtest todir="${reports.dir}">
                 <load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class"/>
                 <formatter type="plain"/>
@@ -84,7 +87,7 @@
         <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
-            <classpath refid="test.classpath"/>
+            <classpath refid="load.balanced.classpath"/>
             <batchtest todir="${reports.dir}">
                 <load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class"/>
                 <formatter classname="com.github.tlb.ant.JunitDataRecorder"/>
