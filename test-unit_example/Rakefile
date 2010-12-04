@@ -1,0 +1,30 @@
+require 'rake'
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/**/*_test.rb']
+  #t.ruby_opts = [" -r#{File.expand_path(File.join(File.dirname(__FILE__), 'test_unit_enhancement.rb'))} "]
+  t.verbose = true
+end
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), 'vendor', 'tlb_rb', 'lib')
+require 'tlb'
+require 'tlb/test_unit/test_task'
+
+Tlb::TestUnit::TestTask.new(:test_balanced) do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
+end
+
+load 'tasks/tlb.rake'
+
+task :bal => ['tlb:start', :test_balanced]
+
+# Rake::TestTask.new do |t|
+#   t.libs << "test"
+#   t.test_files = ['test/add_observers.rb','test/adder_test.rb', 'test/first/bloody_third_test.rb']
+#   t.options = ' -r/tmp/foo.rb'
+#   t.verbose = true
+# end
