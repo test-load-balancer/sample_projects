@@ -27,7 +27,7 @@ Host/Port of TLB server should be reachable and open to all machines that run on
 In this case, the demo script starts its own TLB server on the local box, obviously localhost and 7019(port) are accessible of partitions
 that we execute locally."
 export tlb_store='/tmp/demo_tlb_store'
-exec java -jar $TLB_JAR 2>/dev/null 1>/dev/null &
+exec java -jar $TLB_JAR 2>/tmp/7019.err 1>/tmp/7019.out &
 sleep 1
 tlb_server_pid=$!
 echo "******************************** started the server *********************************"
@@ -39,8 +39,6 @@ export TLB_CRITERIA='com.github.tlb.splitter.DefaultingTestSplitterCriteria'
 export TLB_URL='http://localhost:7019' 
 export TALK_TO_SERVICE='com.github.tlb.service.TalkToTlbServer' 
 export JOB_VERSION=`date | sed -e 's# #-#g'`
-export TLB_JOB_NAME='test-unit' 
-export TOTAL_PARTITIONS=2
 echo_note "We'll make $TOTAL_PARTITIONS partitions of this test suite. In a real situation all partitions would run on different machines in-parallel,
  or atleast on the same machine as multiple independent processes(that run parallely). But for this example, we'll execute them serially,
  one after another. This is just a demostration of configuration required to make TLB aware of prefered balancing & reordering scheme. Please do

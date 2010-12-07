@@ -11,6 +11,7 @@ require 'tlb/spec_task'
 
 Tlb::SpecTask.new(:run_balanced) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
+  t.spec_opts << '--format progress'
 end
 
 load 'tasks/tlb.rake'

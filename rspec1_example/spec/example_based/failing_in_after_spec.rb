@@ -1,0 +1,5 @@
+require File.join(File.dirname(__FILE__), "..", "examples", "example_failing_in_after")
+
+describe "Failing in after spec" do
+  it_should_behave_like "spec_failing_in_after"
+end
