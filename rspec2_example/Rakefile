@@ -1,0 +1,20 @@
+require 'rake'
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+end
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), 'vendor', 'tlb_rb', 'lib')
+require 'tlb'
+require 'tlb/rspec/spec_task'
+
+Tlb::RSpec::SpecTask.new(:run_balanced) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+end
+
+load 'tasks/tlb.rake'
+
+task :bal => ['tlb:start', :run_balanced]
+
+

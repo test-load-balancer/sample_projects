@@ -32,8 +32,8 @@ sleep 1
 tlb_server_pid=$!
 echo "******************************** started the server *********************************"
 
-export TLB_OUT_FILE=/tmp/sco_tlb_out 
-export TLB_ERR_FILE=/tmp/sco_tlb_err
+export TLB_OUT_FILE=/tmp/tlb_balancer.out 
+export TLB_ERR_FILE=/tmp/tlb_balancer.err
 export CRITERIA_DEFAULTING_ORDER='com.github.tlb.splitter.TimeBasedTestSplitterCriteria:com.github.tlb.splitter.CountBasedTestSplitterCriteria' 
 export TLB_CRITERIA='com.github.tlb.splitter.DefaultingTestSplitterCriteria' 
 export TLB_URL='http://localhost:7019' 
