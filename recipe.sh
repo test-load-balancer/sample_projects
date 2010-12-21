@@ -27,6 +27,7 @@ Host/Port of TLB server should be reachable and open to all machines that run on
 In this case, the demo script starts its own TLB server on the local box, obviously localhost and 7019(port) are accessible of partitions
 that we execute locally."
 export tlb_store='/tmp/demo_tlb_store'
+mkdir -p $tlb_store
 exec java -jar $TLB_JAR 2>/tmp/7019.err 1>/tmp/7019.out &
 sleep 1
 tlb_server_pid=$!
