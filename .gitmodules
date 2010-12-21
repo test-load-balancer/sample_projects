@@ -1,12 +1,6 @@
 [submodule "tlb"]
 	path = tlb
 	url = git://github.com/test-load-balancer/tlb.git
-[submodule "test-unit_example/vendor/tlb_rb"]
-	path = test-unit_example/vendor/tlb_rb
-	url = git://github.com/test-load-balancer/tlb_rb.git
 [submodule "rspec1_example/vendor/tlb_rb"]
 	path = rspec1_example/vendor/tlb_rb
-	url = git://github.com/test-load-balancer/tlb_rb.git
-[submodule "rspec2_example/vendor/tlb_rb"]
-	path = rspec2_example/vendor/tlb_rb
 	url = git://github.com/test-load-balancer/tlb_rb.git

@@ -5,7 +5,7 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
 end
 
-$LOAD_PATH << File.join(File.dirname(__FILE__), 'vendor', 'tlb_rb', 'lib')
+require 'rubygems'
 require 'tlb'
 require 'tlb/rspec/spec_task'
 
