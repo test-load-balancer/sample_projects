@@ -1,11 +1,11 @@
 require 'rake'
+require 'rubygems'
 require 'spec/rake/spectask'
 
 Spec::Rake::SpecTask.new(:spec) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
-$LOAD_PATH << File.join(File.dirname(__FILE__), 'vendor', 'tlb_rb', 'lib')
 require 'tlb'
 require 'tlb/spec_task'
 
