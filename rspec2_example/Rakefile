@@ -6,6 +6,7 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 end
 
 require 'rubygems'
+gem 'tlb-rspec2'
 require 'tlb'
 require 'tlb/rspec/spec_task'
 

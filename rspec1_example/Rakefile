@@ -6,6 +6,7 @@ Spec::Rake::SpecTask.new(:spec) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
+gem 'tlb-rspec1'
 require 'tlb'
 require 'tlb/spec_task'
 

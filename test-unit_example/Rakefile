@@ -8,6 +8,7 @@ Rake::TestTask.new do |t|
 end
 
 require 'rubygems'
+gem 'tlb-testunit'
 require 'tlb'
 require 'tlb/test_unit/test_task'
 

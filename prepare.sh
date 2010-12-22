@@ -3,9 +3,6 @@
 echo "Cloning all submodules..."
 git submodule update --init
 
-for i in `find . -path '*/tlb_rb/.git' -type d`; do 
-    echo "Preparing $i..."
-    (cd $i/.. && git submodule update --init && rake build_tlb)
-done
+gem install tlb-testunit tlb-rspec2 tlb-rspec1
 
-echo "Please run ./run_balanced.sh while inside any sample project to see tlb balance tests written using the corresponding framework, for instance, if you want to see tlb balance test::unit tests, please drop into test-unit_example, and run ./run_balanced.sh"
+echo "Please run ./run_balanced.sh while inside any sample project to see tlb balance tests written using the corresponding framework, for instance, if you wish to see tlb balance test::unit tests, drop into directory called test-unit_example, and invoke ./run_balanced.sh"
