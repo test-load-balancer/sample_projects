@@ -1,22 +1,40 @@
-require 'rake'
+#TLB-DOC-START@rspec1-rake-task@
+
 require 'rubygems'
-require 'spec/rake/spectask'
-
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-end
-
 gem 'tlb-rspec1'
 require 'tlb'
-require 'tlb/spec_task'
+require File.join('tlb/spec_task')
 
-Tlb::SpecTask.new(:run_balanced) do |t|
+Tlb::SpecTask.new(:balanced_specs) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts << '--format progress'
+  t.spec_opts << "--format progress"
 end
 
 load 'tasks/tlb.rake'
+desc "run specs load-balanced(based on environment variables)"
+task :bal => ['tlb:start', :balanced_specs]
 
-task :bal => ['tlb:start', :run_balanced]
+#TLB-DOC-END@rspec1-rake-task@
+
+# require 'rake'
+# require 'rubygems'
+# require 'spec/rake/spectask'
+
+# Spec::Rake::SpecTask.new(:spec) do |t|
+#   t.spec_files = FileList['spec/**/*_spec.rb']
+# end
+
+# gem 'tlb-rspec1'
+# require 'tlb'
+# require 'tlb/spec_task'
+
+# Tlb::SpecTask.new(:run_balanced) do |t|
+#   t.spec_files = FileList['spec/**/*_spec.rb']
+#   t.spec_opts << '--format progress'
+# end
+
+# load 'tasks/tlb.rake'
+
+# task :bal => ['tlb:start', :run_balanced]
 
 
