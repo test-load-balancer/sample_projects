@@ -1,13 +1,6 @@
 #TLB-DOC-START@rspec2-rake-task@
 #Use the task :bal to run balanced test suite. You can change the t.pattern to match whatever tests you need
 #to run.
-require 'rake'
-require 'rspec/core/rake_task'
-
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = 'spec/**/*_spec.rb'
-end
-
 require 'rubygems'
 gem 'tlb-rspec2'
 require 'tlb'
@@ -18,6 +11,12 @@ Tlb::RSpec::SpecTask.new(:run_balanced) do |t|
 end
 
 load 'tasks/tlb.rake'
-
+desc "run specs load-balanced(based on environment variables)"
 task :bal => ['tlb:start', :run_balanced]
 #TLB-DOC-END@rspec2-rake-task@
+
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+end

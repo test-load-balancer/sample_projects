@@ -1,12 +1,5 @@
+#TLB-DOC-START@test::unit-rake-task@
 require 'rake'
-require 'rake/testtask'
-
-Rake::TestTask.new do |t|
-  t.libs << "test"
-  t.test_files = FileList['test/**/*_test.rb']
-  t.verbose = true
-end
-
 require 'rubygems'
 gem 'tlb-testunit'
 require 'tlb'
@@ -21,3 +14,13 @@ end
 load 'tasks/tlb.rake'
 
 task :bal => ['tlb:start', :test_balanced]
+#TLB-DOC-END@test::unit-rake-task@
+
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
+end
+
