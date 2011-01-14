@@ -35,10 +35,10 @@ echo "******************************** started the server **********************
 
 export TLB_OUT_FILE=/tmp/tlb_balancer.out 
 export TLB_ERR_FILE=/tmp/tlb_balancer.err
-export CRITERIA_DEFAULTING_ORDER='com.github.tlb.splitter.TimeBasedTestSplitterCriteria:com.github.tlb.splitter.CountBasedTestSplitterCriteria' 
-export TLB_CRITERIA='com.github.tlb.splitter.DefaultingTestSplitterCriteria' 
+export CRITERIA_DEFAULTING_ORDER='tlb.splitter.TimeBasedTestSplitterCriteria:tlb.splitter.CountBasedTestSplitterCriteria' 
+export TLB_CRITERIA='tlb.splitter.DefaultingTestSplitterCriteria' 
 export TLB_URL='http://localhost:7019' 
-export TALK_TO_SERVICE='com.github.tlb.service.TalkToTlbServer' 
+export TALK_TO_SERVICE='tlb.service.TalkToTlbServer' 
 export JOB_VERSION=`date | sed -e 's# #-#g'`
 echo_note "We'll make $TOTAL_PARTITIONS partitions of this test suite. In a real situation all partitions would run on different machines in-parallel,
  or atleast on the same machine as multiple independent processes(that run parallely). But for this example, we'll execute them serially,
@@ -49,7 +49,7 @@ echo_note "We'll make $TOTAL_PARTITIONS partitions of this test suite. In a real
 
 We recomend playing with the TOTAL_PARTITIONS variable defined in this shell-script, see how TLB partitions your tests."
 
-export TLB_ORDERER='com.github.tlb.orderer.FailedFirstOrderer'
+export TLB_ORDERER='tlb.orderer.FailedFirstOrderer'
 
 for i in `seq 1 $TOTAL_PARTITIONS`; do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
