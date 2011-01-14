@@ -55,7 +55,7 @@
         </javac>
     </target>
 
-    <target name="compile-tests" depends="compile">
+    <target name="compile-tests" depends="compile, init-tlb">
         <javac destdir="${test-classes.dir}" target="1.5" source="1.5" includeantruntime="false">
             <classpath refid="test.classpath"/>
             <src path="${test.dir}"/>
@@ -84,10 +84,12 @@
     </target>
 
     <!--TLB-DOC-START@junit-ant-task@ -->
-    <!-- Change the 'load.balanced.classpath' so that it is your test classpath along with the TLB jar and its dependencies.
-         You can change the fileset's includes pattern to include your tests. -->
-    <target name="test.balanced" depends="init-tlb, compile, compile-tests">
-        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
+    <!-- Change the 'load.balanced.classpath' so that it is your test classpath along with the TLB jar and
+    its dependencies. You can also tweak the 'depends' to fix the task dependencies of your build.
+     You can change the fileset's includes pattern to include your tests. -->
+    <target name="test.balanced" depends="compile, compile-tests">
+        <typedef name="load-balanced-fileset" classname="com.github.tlb.ant.LoadBalancedFileSet"
+                 classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
             <classpath refid="load.balanced.classpath"/>

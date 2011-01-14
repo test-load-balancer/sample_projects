@@ -1,5 +1,6 @@
 #TLB-DOC-START@rspec1-rake-task@
-#Use the task :bal to run balanced test suite. You can change the FileSet to match whatever tests you need to run.
+#Use the task :bal to run balanced test suite. You can change the FileSet to match whatever tests you need
+#to run.
 require 'rubygems'
 gem 'tlb-rspec1'
 require 'tlb'

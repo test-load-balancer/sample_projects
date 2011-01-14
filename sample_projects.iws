@@ -84,10 +84,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run_ant.sh" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="run_ant.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ant_junit/run_ant.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="9" selection-start="432" selection-end="432" vertical-scroll-proportion="0.13969733">
+            <state line="8" column="67" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ant_junit/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="17" selection-start="3966" selection-end="3966" vertical-scroll-proportion="0.65909094">
               <folding />
             </state>
           </provider>
@@ -107,8 +116,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/ant_junit/build.xml" />
         <option value="$PROJECT_DIR$/ant_junit/run_ant.sh" />
+        <option value="$PROJECT_DIR$/ant_junit/build.xml" />
       </list>
     </option>
   </component>
@@ -372,13 +381,6 @@
         <state line="30" column="0" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ant_junit/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="42" selection-start="2492" selection-end="2492" vertical-scroll-proportion="0.19258372">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/prepare.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="55" selection-start="178" selection-end="178" vertical-scroll-proportion="0.0">
@@ -388,7 +390,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ant_junit/run_ant.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="9" selection-start="432" selection-end="432" vertical-scroll-proportion="0.13969733">
+        <state line="8" column="67" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ant_junit/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="17" selection-start="3966" selection-end="3966" vertical-scroll-proportion="0.65909094">
           <folding />
         </state>
       </provider>
