@@ -1,5 +1,5 @@
 #TLB-DOC-START@rspec1-rake-task@
-
+#Use the task :bal to run balanced test suite. You can change the FileSet to match whatever tests you need to run.
 require 'rubygems'
 gem 'tlb-rspec1'
 require 'tlb'
@@ -13,7 +13,6 @@ end
 load 'tasks/tlb.rake'
 desc "run specs load-balanced(based on environment variables)"
 task :bal => ['tlb:start', :balanced_specs]
-
 #TLB-DOC-END@rspec1-rake-task@
 
 # require 'rake'

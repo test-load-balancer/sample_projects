@@ -6,4 +6,4 @@ export TLB_URL='http://localhost:7019'
 export TALK_TO_SERVICE='com.github.tlb.service.TalkToTlbServer' 
 export JOB_VERSION=1.2
 export TLB_JOB_NAME='sample-ant' 
-ant test.time_balanced -v
+ant test.balanced -v

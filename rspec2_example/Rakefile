@@ -1,3 +1,5 @@
+#TLB-DOC-START@rspec2-rake-task@
+#Use the task :bal to run balanced test suite. You can change the t.pattern to match whatever tests you need to run.
 require 'rake'
 require 'rspec/core/rake_task'
 
@@ -17,5 +19,4 @@ end
 load 'tasks/tlb.rake'
 
 task :bal => ['tlb:start', :run_balanced]
-
-
+#TLB-DOC-END@rspec2-rake-task@
