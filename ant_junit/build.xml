@@ -36,7 +36,7 @@
     </target>
 
     <target name="init-tlb">
-        <delete dir="${target.dir}/tlb" failonerror="false" />
+        <delete dir="${tlb.path}" failonerror="false" />
         <mkdir dir="${tlb.path}"/>
         <exec command="ant -f ${tlb.submodule.path}/build.xml clean package"/>
         <copy todir="${tlb.path}">

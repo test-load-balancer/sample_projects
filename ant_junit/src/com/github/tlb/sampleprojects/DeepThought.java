@@ -17,7 +17,7 @@ public class DeepThought {
     }
 
     private static int fakeYears() {
-        return 100;
+        return 50;
     }
 
     public static void nowWhatIsTheQuestion() {
