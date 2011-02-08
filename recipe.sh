@@ -35,11 +35,11 @@ echo "******************************** started the server **********************
 
 export TLB_OUT_FILE=/tmp/tlb_balancer.out 
 export TLB_ERR_FILE=/tmp/tlb_balancer.err
-export CRITERIA_DEFAULTING_ORDER='tlb.splitter.TimeBasedTestSplitterCriteria:tlb.splitter.CountBasedTestSplitterCriteria' 
-export TLB_CRITERIA='tlb.splitter.DefaultingTestSplitterCriteria' 
-export TLB_URL='http://localhost:7019' 
-export TALK_TO_SERVICE='tlb.service.TalkToTlbServer' 
-export JOB_VERSION=`date | sed -e 's# #-#g'`
+export TLB_PREFERRED_SPLITTERS='tlb.splitter.TimeBasedTestSplitter:tlb.splitter.CountBasedTestSplitter' 
+export TLB_SPLITTER='tlb.splitter.DefaultingTestSplitter' 
+export TLB_BASE_URL='http://localhost:7019' 
+export TYPE_OF_SERVER='tlb.service.TlbServer' 
+export TLB_JOB_VERSION=`date | sed -e 's# #-#g'`
 echo_note "We'll make $TOTAL_PARTITIONS partitions of this test suite. In a real situation all partitions would run on different machines in-parallel,
  or atleast on the same machine as multiple independent processes(that run parallely). But for this example, we'll execute them serially,
  one after another. This is just a demostration of configuration required to make TLB aware of prefered balancing & reordering scheme. Please do
@@ -51,9 +51,9 @@ We recomend playing with the TOTAL_PARTITIONS variable defined in this shell-scr
 
 export TLB_ORDERER='tlb.orderer.FailedFirstOrderer'
 
-for i in `seq 1 $TOTAL_PARTITIONS`; do
+for i in `seq 1 $TLB_TOTAL_PARTITIONS`; do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    export PARTITION_NUMBER=$i
+    export TLB_PARTITION_NUMBER=$i
     echo_note "This is partition number $PARTITION_NUMBER of $TOTAL_PARTITIONS, while this partition is running on your machine, imagine other partition(s)
  running parallely on machines other than yours(say one partition per machine). TLB will ensure all partitions finish at almost the same time, which means
  your build will take just as much time as running this partition does."

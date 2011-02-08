@@ -1,16 +1,48 @@
-<project name="ant_junit" basedir="." default="all">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ant_junit" basedir="." default="all">
 
     <property name="src.dir" location="src"/>
     <property name="test.dir" location="test"/>
-    <property name="test-lib.dir" location="${basedir}/../shared_test_libs"/>
+    <property name="lib.dir" location="lib"/>
+    <property name="test.lib.dir" location="lib/test"/>
+    <property name="tlb.lib.dir" location="lib/tlb"/>
+    <property name="test-lib.dir" location="${basedir}/../../tlb/lib/test"/>
     <property name="target.dir" location="target"/>
     <property name="classes.dir" location="${target.dir}/classes"/>
     <property name="test-classes.dir" location="${target.dir}/test-classes"/>
     <property name="reports.dir" location="${target.dir}/reports"/>
-    <property name="tlb.path" location="${target.dir}/tlb"/>
-    <property name="tlb.submodule.path" location="${basedir}/../tlb"/>
-    <property name="tlb.dependencies" location="${tlb.submodule.path}/lib/prod"/>
 
+
+    <property name="ivy.install.version" value="2.2.0" />
+    <condition property="ivy.home" value="/${user.home}/.ant" else="${user.home}/.ant">
+        <os family="windows" />
+    </condition>
+    <condition property="ivy.home" value="${env.IVY_HOME}">
+      <isset property="env.IVY_HOME" />
+    </condition>
+    <property name="ivy.jar.dir" value="${ivy.home}/lib" />
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+    <target name="download-ivy" unless="offline">
+        <mkdir dir="${ivy.jar.dir}"/>
+        <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+    </target>
+
+    <target name="init-ivy" depends="download-ivy">
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
+
+    <target name="resolve" depends="init-ivy">
+        <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[revision]-[type].[ext]" sync="true"/>
+    </target>
+
+    <target name="init" depends="resolve">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${test-classes.dir}"/>
+        <mkdir dir="${reports.dir}"/>
+    </target>
 
     <path id="src.classpath">
         <pathelement path="${classes.dir}"/>
@@ -19,30 +51,13 @@
     <path id="test.classpath">
         <path refid="src.classpath"/>
         <pathelement path="${test-classes.dir}"/>
-        <fileset dir="${test-lib.dir}" includes="*.jar"/>
+        <fileset dir="${test.lib.dir}" includes="*.jar"/>
     </path>
 
     <path id="load.balanced.classpath">
-        <fileset dir="${tlb.path}" includes="*.jar"/>
         <path refid="test.classpath"/>
-        <fileset dir="${tlb.dependencies}" includes="*.jar"/>
+        <fileset dir="${tlb.lib.dir}" includes="*.jar"/>
     </path>
-
-    <target name="init">
-        <mkdir dir="${classes.dir}"/>
-        <mkdir dir="${test-classes.dir}"/>
-        <mkdir dir="${reports.dir}"/>
-        <mkdir dir="${tlb.path}"/>
-    </target>
-
-    <target name="init-tlb">
-        <delete dir="${tlb.path}" failonerror="false" />
-        <mkdir dir="${tlb.path}"/>
-        <exec command="ant -f ${tlb.submodule.path}/build.xml clean package"/>
-        <copy todir="${tlb.path}">
-            <fileset dir="${tlb.submodule.path}/target" includes="tlb-g*.jar" excludes="*src*"/>
-        </copy>
-    </target>
 
     <target name="clean">
         <delete dir="${target.dir}" includeemptydirs="true"/>
@@ -53,9 +68,12 @@
             <classpath refid="src.classpath"/>
             <src path="${src.dir}"/>
         </javac>
+        <copy todir="${classes.dir}">
+            <file file="${src.dir}/log4j.properties"/>
+        </copy>
     </target>
 
-    <target name="compile-tests" depends="compile, init-tlb">
+    <target name="compile-tests" depends="compile">
         <javac destdir="${test-classes.dir}" target="1.5" source="1.5" includeantruntime="false">
             <classpath refid="test.classpath"/>
             <src path="${test.dir}"/>
@@ -71,25 +89,12 @@
         </junit>
     </target>
 
-    <target name="test.count_balanced" depends="init-tlb, compile, compile-tests">
-        <typedef name="load-balanced-fileset" classname="tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
-        <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
-               showoutput="true" fork="true">
-            <classpath refid="load.balanced.classpath"/>
-            <batchtest todir="${reports.dir}">
-                <load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class"/>
-                <formatter type="plain"/>
-            </batchtest>
-        </junit>
-    </target>
-
     <!--TLB-DOC-START@junit-ant-task@ -->
     <!-- Change the 'load.balanced.classpath' so that it is your test classpath along with the TLB jar and
     its dependencies. You can also tweak the 'depends' to fix the task dependencies of your build.
      You can change the fileset's includes pattern to include your tests. -->
     <target name="test.balanced" depends="compile, compile-tests">
-        <typedef name="load-balanced-fileset" classname="tlb.ant.LoadBalancedFileSet"
-                 classpathref="load.balanced.classpath"/>
+        <typedef name="load-balanced-fileset" classname="tlb.ant.LoadBalancedFileSet" classpathref="load.balanced.classpath"/>
         <junit failureproperty="test.failure" printsummary="yes" haltonfailure="true" haltonerror="true"
                showoutput="true" fork="true">
             <classpath refid="load.balanced.classpath"/>
