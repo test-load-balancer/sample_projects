@@ -2,3 +2,4 @@ ant_junit/target
 ant_junit/lib
 .idea
 out
+sample_projects.iws
