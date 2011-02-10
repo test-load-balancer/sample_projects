@@ -2,7 +2,6 @@
 require 'rake'
 require 'rubygems'
 gem 'tlb-testunit'
-require 'tlb'
 require 'tlb/test_unit/test_task'
 
 Tlb::TestUnit::TestTask.new(:test_balanced) do |t|

@@ -3,7 +3,6 @@
 #to run.
 require 'rubygems'
 gem 'tlb-rspec2'
-require 'tlb'
 require 'tlb/rspec/spec_task'
 
 Tlb::RSpec::SpecTask.new(:run_balanced) do |t|
