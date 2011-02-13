@@ -22,7 +22,7 @@ making_partitions_message $TLB_TOTAL_PARTITIONS
 
 export TLB_ORDERER='tlb.orderer.FailedFirstOrderer'
 
-for i in `seq 1 $TLB_TOTAL_PARTITIONS`; do
+for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     export TLB_PARTITION_NUMBER=$i
     this_is_partition_x_of_y_message $TLB_PARTITION_NUMBER $TLB_TOTAL_PARTITIONS
