@@ -1,0 +1,21 @@
+ABOUT
+-----
+This is a directory of tiny projects created to demontrate TLB setup.
+These projects are written in different languages, using different testing frameworks and build tools supported by TLB(and sister projects).
+
+Here is a short discription of each example project
+---------------------------------------------------
+ant_junit [Java]:         Java project that has an Ant build script. Demonstrates running of JUnit tests using Ant build target using TLB java support.
+rspec1_example [Ruby]:    Demonstrates running of RSpec-1.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec1 gem on your computer for this to work).
+rspec2_example [Ruby]:    Demonstrates running of RSpec-2.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
+test-unit_example [Ruby]: Demonstrates running of Test::Unit tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
+
+
+HOW TO USE
+----------
+All of these projects have a shell-script 'run_balanced.sh' which should be executed from the respective project root. This script executes two partitions of tests(one after another). 
+
+NOTE
+----
+These partitions are executed serially, but this setup is only for demonstration purpose and to help new TLB users with working build-fragments. 
+In a real world situation all such partitions would be started at the same time, and executed on different machines parallely(hence the load distribution).
