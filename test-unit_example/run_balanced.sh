@@ -1,6 +1,14 @@
 #!/bin/bash
 
-export TLB_JAR=`ruby -e 'require "rubygems"; gem "tlb-testunit"; require "tlb"; puts Tlb.tlb_jar;'`
+dev_lib_dir=../../tlb/target
+dist_lib_dir=../../server
+
+if [ -e $dev_lib_dir ]; then
+    export TLB_JAR=`ls $dev_lib_dir/tlb-server*.jar`
+else
+    export TLB_JAR=`ls $dist_lib_dir/tlb-server*.jar`
+fi
+
 export TLB_JOB_NAME='test-unit' 
 export TLB_TOTAL_PARTITIONS=2
 export TEST_TASK='rake bal'
