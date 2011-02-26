@@ -19,10 +19,10 @@
         <dependency org="org.apache.httpcomponents" name="httpcomponents-core" rev="4.1" conf="tlb"/>
         <dependency org="org.apache.httpcomponents" name="httpclient" rev="4.1" conf="tlb"/>
         
-        <dependency name="tlb" rev="gv0.2-74-gc0a7b9a" conf="tlb"/>
+        <dependency name="tlb-java" rev="gv0.2-108-g30e2fc0" conf="tlb"/>
 
         <dependency org="junit" name="junit" rev="4.7"/>
 
-        <dependency name="tlb-all" rev="gv0.2-74-gc0a7b9a" conf="tlb-standalone"/>
+        <dependency name="tlb-server" rev="gv0.2-108-g30e2fc0" conf="tlb-standalone"/>
     </dependencies>
 </ivy-module>

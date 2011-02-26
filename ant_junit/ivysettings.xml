@@ -12,26 +12,32 @@
                 <artifact pattern="${basedir}/../../tlb/target/[artifact]-[revision].[ext]"/>
             </filesystem>
         </chain>
-        <chain name="local-dev">
+        <chain name="local-dev-java">
             <filesystem name="local">
-                <artifact pattern="${basedir}/../../tlb/lib/prod/[artifact]-[revision].[ext]"/>
+                <artifact pattern="${basedir}/../../tlb/java/lib/[artifact]-[revision].[ext]"/>
             </filesystem>
         </chain>
-        <chain name="self-dist">
+        <chain name="self-dist-server">
             <filesystem name="local">
-                <artifact pattern="${basedir}/../../[artifact]-[revision].[ext]"/>
+                <artifact pattern="${basedir}/../../server/[artifact]-[revision].[ext]"/>
             </filesystem>
         </chain>
-        <chain name="local-dist">
+        <chain name="self-dist-java">
             <filesystem name="local">
-                <artifact pattern="${basedir}/../../lib/[artifact]-[revision].[ext]"/>
+                <artifact pattern="${basedir}/../../java/[artifact]-[revision].[ext]"/>
+            </filesystem>
+        </chain>
+        <chain name="local-dist-java">
+            <filesystem name="local">
+                <artifact pattern="${basedir}/../../java/lib/[artifact]-[revision].[ext]"/>
             </filesystem>
         </chain>
         <chain name="tlb_sample">
             <resolver ref="self-dev"/>
-            <resolver ref="local-dev"/>
-            <resolver ref="self-dist"/>
-            <resolver ref="local-dist"/>
+            <resolver ref="local-dev-java"/>
+            <resolver ref="self-dist-server"/>
+            <resolver ref="self-dist-java"/>
+            <resolver ref="local-dist-java"/>
             <resolver ref="default"/>
         </chain>
     </resolvers>
