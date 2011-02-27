@@ -5,7 +5,8 @@ These projects are written in different languages, using different testing frame
 
 Here is a short discription of each example project
 ---------------------------------------------------
-ant_junit [Java]:         Java project that has an Ant build script. Demonstrates running of JUnit tests using Ant build target using TLB java support.
+ant_junit [Java]:         Java project using Ant. Demonstrates running of JUnit tests on Ant build target using TLB java support.
+buildr_junit [Java]:      Java project using Buildr. Demonstrates running of JUnit tests on Buildr build target using TLB java support.
 rspec1_example [Ruby]:    Demonstrates running of RSpec-1.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec1 gem on your computer for this to work).
 rspec2_example [Ruby]:    Demonstrates running of RSpec-2.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
 test-unit_example [Ruby]: Demonstrates running of Test::Unit tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
