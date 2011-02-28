@@ -28,7 +28,6 @@ if ENV['load_balance'] == 'true'
         taskdef = Buildr.artifact(JUnit.ant_taskdef)
         taskdef.invoke
         ant.taskdef :name=>'junit', :classname=>'org.apache.tools.ant.taskdefs.optional.junit.JUnitTask', :classpath=>taskdef.to_s
-        p tlb_jars
         ant.typedef :name=>'load_balanced_fileset', :classname => 'tlb.ant.LoadBalancedFileSet', :classpath => tlb_jars
 
         dependencies << tlb_jars

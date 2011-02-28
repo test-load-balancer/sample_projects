@@ -1,5 +1,4 @@
 ant_junit/target
-ant_junit/lib
 buildr_junit/reports
 buildr_junit/target
 .idea
