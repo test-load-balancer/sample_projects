@@ -10,7 +10,7 @@ buildr_junit [Java]:      Java project using Buildr. Demonstrates running of JUn
 rspec1_example [Ruby]:    Demonstrates running of RSpec-1.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec1 gem on your computer for this to work).
 rspec2_example [Ruby]:    Demonstrates running of RSpec-2.x tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
 test-unit_example [Ruby]: Demonstrates running of Test::Unit tests using Rake build target. This uses TLB Ruby suppport(you need to install tlb-rspec2 gem on your computer for this to work).
-
+cucumber_example [Ruby]:  Demonstrates running of Cucumber tests using Rake build target. This uses TLB Ruby suppport (you need to install tlb-cucumber gem on your computer for this to work).
 
 HOW TO USE
 ----------
