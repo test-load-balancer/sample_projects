@@ -46,5 +46,3 @@ terminating_tlb_server $TLB_BASE_URL
 kill $tlb_server_pid
 wait
 echo "****************************** tlb server reaped *****************************************"
-
-
