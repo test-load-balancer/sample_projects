@@ -1,3 +1,4 @@
+#TLB-DOC-START@cucumber-rake-task@
 require 'rubygems'
 require 'cucumber'
 gem 'tlb-cucumber'
@@ -10,3 +11,4 @@ end
 load 'tasks/tlb.rake'
 desc "Run Cucumber features in a load-balanced fashion (based on environment variables)"
 task :bal => ['tlb:start', :cucumber_tests]
+#TLB-DOC-END@cucumber-rake-task@
