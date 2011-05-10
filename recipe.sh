@@ -22,14 +22,9 @@ echo "******************************** started the server **********************
 
 export TLB_OUT_FILE=/tmp/tlb_balancer.out 
 export TLB_ERR_FILE=/tmp/tlb_balancer.err
-export TLB_PREFERRED_SPLITTERS='tlb.splitter.TimeBasedTestSplitter:tlb.splitter.CountBasedTestSplitter' 
-export TLB_SPLITTER='tlb.splitter.DefaultingTestSplitter' 
 export TLB_BASE_URL='http://localhost:7019' 
-export TYPE_OF_SERVER='tlb.service.TlbServer' 
 export TLB_JOB_VERSION=`date | sed -e 's# #-#g'`
 making_partitions_message $TLB_TOTAL_PARTITIONS
-
-export TLB_ORDERER='tlb.orderer.FailedFirstOrderer'
 
 for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
