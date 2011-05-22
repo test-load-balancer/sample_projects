@@ -3,7 +3,7 @@
 #to run.
 require 'rubygems'
 gem 'tlb-rspec1'
-require 'tlb/spec_task'
+require 'tlb/spec/spec_task'
 
 Tlb::SpecTask.new(:balanced_specs) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
