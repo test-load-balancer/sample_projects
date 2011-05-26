@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ $1 = no-verbosity ]]; then
+    verbose=false
+else 
+    verbose=true
+fi
+
 dev_lib_dir=../../tlb/target
 dist_lib_dir=../../server
 

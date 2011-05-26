@@ -10,7 +10,7 @@ function divider {
 }
 
 function echo_note {
-    if [[ $1 = "no-verbosity" ]]; then
+    if [[ $verbose = true ]]; then
         echo
         divider "=======" "NOTE:" "------------------------------------------------------------------------------"
         tput setaf 4
