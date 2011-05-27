@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 shared_examples_for "all passing" do
   it "should verify number equality" do
     sleep 1

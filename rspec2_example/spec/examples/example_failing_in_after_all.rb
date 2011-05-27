@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 shared_examples_for "spec failing in after all" do
   after :all do
     10.should == 9 #oops bad assertion

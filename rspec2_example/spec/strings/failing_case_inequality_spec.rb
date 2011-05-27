@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 describe "upcase and downcase" do
   it "should be the same" do
     sleep 1

@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe "Passing spec #{Time.now}" do
   it "should just pass" do

@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 require File.join(File.dirname(__FILE__), "..", "examples", "example_all_passing")
 
 describe "All passing using examples" do

@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 describe "Nested failure in after" do
   it "should not fail in spec" do
     sleep 1
