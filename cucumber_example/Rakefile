@@ -12,3 +12,7 @@ load 'tasks/tlb.rake'
 desc "Run Cucumber features in a load-balanced fashion (based on environment variables)"
 task :bal => ['tlb:start', :cucumber_tests]
 #TLB-DOC-END@cucumber-rake-task@
+
+Cucumber::Rake::Task.new(:serial_tests) do |t|
+  t.cucumber_opts = ["--format", "pretty"]
+end
