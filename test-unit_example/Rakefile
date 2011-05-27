@@ -1,7 +1,11 @@
 #TLB-DOC-START@test::unit-rake-task@
 require 'rake'
 require 'rubygems'
-gem 'tlb-testunit'
+if RUBY_VERSION =~ /^1\.9/
+  gem 'tlb-testunit19'
+else
+  gem 'tlb-testunit18'
+end
 require 'tlb/test_unit/test_task'
 
 Tlb::TestUnit::TestTask.new(:test_balanced) do |t|
