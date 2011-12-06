@@ -17,6 +17,13 @@ fi
 
 source ../messages.sh
 
+function run {
+    echo "--- EXECUTING: $* ---"
+    $*
+    ret=$?
+    echo "--- INVOCATION RETURNED: $ret ---"
+}
+
 echo "******************************** starting the server *********************************"
 starting_tlb_server_message
 export TLB_DATA_DIR='/tmp/demo_tlb_store'
@@ -38,7 +45,11 @@ for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     this_is_partition_x_of_y_message $TLB_PARTITION_NUMBER $TLB_TOTAL_PARTITIONS
     export TLB_BALANCER_PORT=300$i
     running_partition_x_on_port $TLB_PARTITION_NUMBER $TLB_BALANCER_PORT
-    $TEST_TASK
+    run $TEST_TASK
+
+    if [ $i -eq $TLB_TOTAL_PARTITIONS ]; then
+        run $ALL_PARTITIONS_RAN_VERIFICATION_TASK
+    fi
     echo "==================================================================================="
 done
 
