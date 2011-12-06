@@ -17,6 +17,8 @@ fi
 
 source ../messages.sh
 
+echo "You can set(to yes) or unset 'PERFORM_CORRECTNESS_CHECK' environment variable to enable or disable correctness checking"
+
 function run {
     echo "--- EXECUTING: $* ---"
     $*
@@ -39,6 +41,13 @@ export TLB_BASE_URL='http://localhost:7019'
 export TLB_JOB_VERSION=`date | sed -e 's# #-#g'`
 making_partitions_message $TLB_TOTAL_PARTITIONS
 
+if [ -n $PERFORM_CORRECTNESS_CHECK ]; then
+    echo "--- Correctness check ENABLED ---"
+    export SPLIT_CORRECTNESS_CHECKER=tlb.splitter.correctness.AbortOnFailure
+else 
+    echo "--- Correctness check DISABLED ---"
+fi
+
 for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     export TLB_PARTITION_NUMBER=$i
@@ -47,7 +56,7 @@ for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     running_partition_x_on_port $TLB_PARTITION_NUMBER $TLB_BALANCER_PORT
     run $TEST_TASK
 
-    if [ $i -eq $TLB_TOTAL_PARTITIONS ]; then
+    if [ $i -eq $TLB_TOTAL_PARTITIONS -a -n $PERFORM_CORRECTNESS_CHECK ]; then
         run $ALL_PARTITIONS_RAN_VERIFICATION_TASK
     fi
     echo "==================================================================================="
