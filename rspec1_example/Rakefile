@@ -8,6 +8,8 @@ require 'tlb/spec/spec_task'
 Tlb::SpecTask.new(:balanced_specs) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
   t.spec_opts << "--format progress"
+  #t.tlb_module_name = 'my-spec-module'
+  #NOTE: Comment out previous line if your project has multiple modules(or test modules) each having its own test task. Set module name appropriately for each test-task in a multiple-module setup.
 end
 
 load 'tasks/tlb.rake'
