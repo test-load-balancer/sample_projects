@@ -41,12 +41,13 @@ export TLB_BASE_URL='http://localhost:7019'
 export TLB_JOB_VERSION=`date | sed -e 's# #-#g'`
 making_partitions_message $TLB_TOTAL_PARTITIONS
 
-if [ -n $PERFORM_CORRECTNESS_CHECK ]; then
+if [ x$PERFORM_CORRECTNESS_CHECK != x ]; then
     echo "--- Correctness check ENABLED ---"
     export SPLIT_CORRECTNESS_CHECKER=tlb.splitter.correctness.AbortOnFailure
 else 
     echo "--- Correctness check DISABLED ---"
 fi
+echo
 
 for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>> executing partition $i <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
@@ -56,7 +57,7 @@ for((i=1; i <= $TLB_TOTAL_PARTITIONS; i++)); do
     running_partition_x_on_port $TLB_PARTITION_NUMBER $TLB_BALANCER_PORT
     run $TEST_TASK
 
-    if [ $i -eq $TLB_TOTAL_PARTITIONS -a -n $PERFORM_CORRECTNESS_CHECK ]; then
+    if [ $i -eq $TLB_TOTAL_PARTITIONS -a x$SPLIT_CORRECTNESS_CHECKER != x ]; then
         run $ALL_PARTITIONS_RAN_VERIFICATION_TASK
     fi
     echo "==================================================================================="
