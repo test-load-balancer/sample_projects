@@ -89,7 +89,7 @@
     <target name="assert.all.partitions.executed">
         <typedef name="check-missing-partitions" classname="tlb.ant.CheckMissingPartitions" classpathref="load.balanced.classpath"/>
         <check-missing-partitions/>
-        <!-- uncomment and use the check-missing-partition task invocation below(comment out the one above) if you have a multi-module setup and want to verify all completeness of all partitions across all modules in one shot -->
+        <!-- uncomment and use the check-missing-partition task invocation below(comment out the one above) if you have a multi-module setup and want to verify completeness of all partitions across all/some modules in one shot -->
         <!--check-missing-partitions moduleNames="my-ant-module,my-other-ant-module"/-->
     </target>
     <!--TLB-DOC-END@junit-ant-task@ -->
