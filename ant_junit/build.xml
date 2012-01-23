@@ -77,10 +77,20 @@
             <classpath refid="load.balanced.classpath"/>
             <batchtest todir="${reports.dir}">
                 <load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class"/>
+                <!-- uncomment and use the load-balanced-file-set configuration below(comment out the one above) if you have a multi-module setup and this is test invocation for one of the modules -->
+                <!--load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class" moduleName="my-ant-module"/-->
                 <formatter classname="tlb.ant.JunitDataRecorder"/>
                 <formatter type="plain"/>
             </batchtest>
         </junit>
+    </target>
+
+    <!-- the following target is not required unless you intend to enable correctness check-->
+    <target name="assert.all.partitions.executed">
+        <typedef name="check-missing-partitions" classname="tlb.ant.CheckMissingPartitions" classpathref="load.balanced.classpath"/>
+        <check-missing-partitions/>
+        <!-- uncomment and use the check-missing-partition task invocation below(comment out the one above) if you have a multi-module setup and want to verify completeness of all partitions across all/some modules in one shot -->
+        <!--check-missing-partitions moduleNames="my-ant-module,my-other-ant-module"/-->
     </target>
     <!--TLB-DOC-END@junit-ant-task@ -->
 

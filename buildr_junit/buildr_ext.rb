@@ -42,6 +42,8 @@ if ENV['load_balance'] == 'true'
           ant.formatter :type=>'xml'
           ant.batchtest :todir=>task.report_to.to_s, :failureproperty=>'failed' do
             ant.load_balanced_fileset(:dir => task.compile.target.to_s, :includes => "**/*Test.class")
+            #uncomment and use the line below(comment the one above) if you have enabled TLB correctness check on a multi-module project and this is test invocation for one of the modules.
+            #ant.load_balanced_fileset(:dir => task.compile.target.to_s, :includes => "**/*Test.class", :moduleName => "buildr_based_module")
             ant.formatter :classname=> "tlb.ant.JunitDataRecorder"
             ant.formatter :type=>'plain'
           end
@@ -69,5 +71,14 @@ if ENV['load_balance'] == 'true'
         info "Generated JUnit tests report in #{report.target}"
       end
     end
+  end
+end
+
+task :assert_all_partitions_executed do
+  Buildr.ant('check-missing-partitions') do |ant|
+    ant.taskdef :name=>'check_missing_partitions', :classname=>'tlb.ant.CheckMissingPartitions', :classpath => tlb_jars
+    ant.check_missing_partitions
+    #uncomment and use the line below(comment the one above) if you have enabled TLB correctness check on a multi-module project and want to verify completeness of all partitions across all/some modules in one shot .
+    #ant.check_missing_partitions(:moduleNames => "buildr_based_module,some_other_module,third_module")
   end
 end
