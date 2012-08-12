@@ -5,3 +5,4 @@ buildr_junit/target
 out
 sample_projects.iws
 simple_ruby_project/coverage*
+**/tmp

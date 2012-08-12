@@ -14,7 +14,9 @@ cucumber_example [Ruby]:  Demonstrates running of Cucumber tests using Rake buil
 
 HOW TO USE
 ----------
-All of these projects have a shell-script 'run_balanced.sh' which should be executed from the respective project root. This script executes two partitions of tests(one after another). 
+All of these projects have a shell-script 'run_balanced.sh' or 'run_balanced.bat' which should be executed from the respective project root. This script executes two partitions of tests(one after another). 
+
+On Windows, you can do a "run_balanced.bat --help" to figure out how to use the script
 
 NOTE
 ----
