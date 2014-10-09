@@ -6,3 +6,6 @@ out
 sample_projects.iws
 simple_ruby_project/coverage*
 **/tmp
+
+maven_junit/*.iml
+maven_junit/target/*

@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.test-load-balancer</groupId>
+    <artifactId>maven-junit</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>TLB Sample Maven App</name>
+    <url>https://github.com/test-load-balancer</url>
+
+    <repositories>
+        <repository>
+            <id>local.maven.repo</id>
+            <name>go-maven-repository</name>
+            <url>file:${project.basedir}/local-maven-repo/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tlb</groupId>
+            <artifactId>tlb-java</artifactId>
+            <version>0.3.2-90-g6df47e3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>ant.test.tlb</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks if="run.tests.using.tlb">
+                                <echo message="TLB_JOB_NAME = ${env.TLB_JOB_NAME}"/>
+                                <echo message="TLB_JOB_VERSION = ${env.TLB_JOB_VERSION}"/>
+                                <echo message="TLB_PARTITION_NUMBER = ${env.TLB_PARTITION_NUMBER}"/>
+                                <echo message="TLB_TOTAL_PARTITIONS = ${env.TLB_TOTAL_PARTITIONS}"/>
+
+                                <property name="target.dir" location="target"/>
+                                <property name="classes.dir" location="${target.dir}/classes"/>
+                                <property name="test-classes.dir" location="${target.dir}/test-classes"/>
+                                <property name="reports.dir" location="${target.dir}/reports"/>
+
+                                <mkdir dir="${reports.dir}"/>
+
+                                <!-- run tests through TLB -->
+                                <path id="classpath.for.tests">
+                                    <path refid="maven.test.classpath"/>
+                                </path>
+
+                                <typedef name="load-balanced-fileset" classname="tlb.ant.LoadBalancedFileSet" classpathref="classpath.for.tests"/>
+
+                                <junit failureproperty="test.failed" printsummary="yes" haltonfailure="false" haltonerror="false" showoutput="true" fork="true">
+                                    <classpath refid="classpath.for.tests"/>
+
+                                    <batchtest todir="${reports.dir}">
+                                        <load-balanced-fileset dir="${test-classes.dir}" includes="**/*Test.class" moduleName="sample-maven-project"/>
+                                        <formatter classname="tlb.ant.JunitDataRecorder"/>
+                                        <formatter type="xml"/>
+                                    </batchtest>
+                                </junit>
+                                <fail if="test.failed"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-junit</artifactId>
+                        <version>1.9.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
