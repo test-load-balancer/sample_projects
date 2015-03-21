@@ -48,7 +48,8 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks if="run.tests.using.tlb">
+                            <target>
+                                <echo message="TLB_BASE_URL = ${env.TLB_BASE_URL}"/>
                                 <echo message="TLB_JOB_NAME = ${env.TLB_JOB_NAME}"/>
                                 <echo message="TLB_JOB_VERSION = ${env.TLB_JOB_VERSION}"/>
                                 <echo message="TLB_PARTITION_NUMBER = ${env.TLB_PARTITION_NUMBER}"/>
@@ -78,7 +79,7 @@
                                     </batchtest>
                                 </junit>
                                 <fail if="test.failed"/>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
